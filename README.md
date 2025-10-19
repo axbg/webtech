@@ -8,6 +8,11 @@
 
 - [Lab 1 - Intro: Git & JavaScript](./labs/l1/README.md)
 - [Lab 2 - Web & JavaScript 101](/labs/l2/README.md)
+- [Lab 3 - Arrays](/labs/l3/README.md)
+
+## Homework
+
+- [First homework - JavaScript](https://classroom.github.com/a/_x_p8U3b) - deadline: 27th of October 2025, 23:59
 
 ## Project
 
