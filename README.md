@@ -9,6 +9,7 @@
 - [Lab 1 - Intro: Git & JavaScript](./labs/l1/README.md)
 - [Lab 2 - Web & JavaScript 101](/labs/l2/README.md)
 - [Lab 3 - Arrays](/labs/l3/README.md)
+- [Lab 4 - Closures, classes & errors](/labs/l4/README.md)
 
 ## Homework
 
@@ -17,6 +18,7 @@
 ## Project
 
 - [Team registration](https://docs.google.com/forms/d/e/1FAIpQLSfQqkeDVOxFFSXL6IJp4BrNDr0A3bXr3Ih9akrBIQF0axSpiA/viewform?usp=header)
+- [Projects allocation](https://docs.google.com/spreadsheets/d/13RyUTUtdj6MYI1EZijyexDhKP_VoQnRsJMTGb0ltB9I/edit?usp=sharing)
 
 ## Exam
 
