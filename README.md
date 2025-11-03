@@ -39,6 +39,10 @@
 
 - [Anonymous Questions](https://forms.gle/AV4LjvBeTDT1Roe48)
 
+## Additional topics
+
+- [How to use git tags](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag)
+
 ## Additional resources
 
 - [Text book (in Romanian)](https://drive.google.com/file/d/1MGcdX5RBELHMXhaky_cJnuRRU97qNXw5/view?usp=sharing)
