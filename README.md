@@ -10,6 +10,7 @@
 - [Lab 2 - Web & JavaScript 101](/labs/l2/README.md)
 - [Lab 3 - Arrays](/labs/l3/README.md)
 - [Lab 4 - Closures, classes & errors](/labs/l4/README.md)
+- [Lab 5 - Asynchronous Programming: callback, Promise, async/await](/labs/l5/README.md)
 
 ## Homework
 
