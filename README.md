@@ -15,7 +15,8 @@
 
 ## Homework
 
-- [First homework - JavaScript](https://classroom.github.com/a/_x_p8U3b) - deadline: 27th of October 2025, 23:59
+- <del>[First homework - JavaScript](https://classroom.github.com/a/_x_p8U3b) - deadline: 27th of October 2025, 23:59</del>
+- [Second homework - Advanced JavaScript](https://classroom.github.com/a/qAAnoLTx) - deadline: 17th of November 2025, 23:59
 
 ## Project
 
