@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "webtech@csie",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.1",
+    "random": "^5.1.1"
+  }
+}
