@@ -24,6 +24,10 @@
 - [Team registration](https://docs.google.com/forms/d/e/1FAIpQLSfQqkeDVOxFFSXL6IJp4BrNDr0A3bXr3Ih9akrBIQF0axSpiA/viewform?usp=header)
 - [Projects allocation](https://docs.google.com/spreadsheets/d/13RyUTUtdj6MYI1EZijyexDhKP_VoQnRsJMTGb0ltB9I/edit?usp=sharing)
 
+## Lab app versions
+
+- [After Lab 6 - HTTP Server: Node.js & Express](https://github.com/axbg/webtech/releases/tag/app-after-lab-6)
+
 ## Exam
 
 - [2025, January](https://github.com/csie-web/examen-2025)
