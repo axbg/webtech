@@ -12,6 +12,7 @@
 - [Lab 4 - Closures, classes & errors](/labs/l4/README.md)
 - [Lab 5 - Asynchronous Programming: callback, Promise, async/await](/labs/l5/README.md)
 - [Lab 6 - HTTP Server: Node.js & Express](./labs/l6/README.md)
+- [Lab 7 - REST, databases & ORMs](./labs/l7/README.md)
 
 ## Homework
 
