@@ -28,6 +28,10 @@
 
 - [After Lab 6 - HTTP Server: Node.js & Express](https://github.com/axbg/webtech/releases/tag/app-after-lab-6)
 
+## Feedback
+
+- [Feedback form](https://forms.gle/XXFQBwNodwrFP2aaA)
+
 ## Exam
 
 - [2025, January](https://github.com/csie-web/examen-2025)
