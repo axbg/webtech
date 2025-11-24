@@ -6,23 +6,24 @@
 2. [Node.js](#2-nodejs)
 3. [Modules](#3-modules)
 4. [Node Package Manager](#4-node-package-manager-npm)
-    1. [The package.json file](#41-the-packagejson-file)
-    2. [Common commands](#42-common-commands)
-    3. [Using external packages](#43-using-external-packages)
+   1. [The package.json file](#41-the-packagejson-file)
+   2. [Common commands](#42-common-commands)
+   3. [Using external packages](#43-using-external-packages)
 5. [Express](#5-express)
 6. [Project structure](#6-project-structure)
-    1. [Type-based structure](#61-type-based-structure)
-    2. [Feature-based structure](#62-feature-based-structure)
-    3. [Current project structure and Express Router](#63-current-project-structure-and-express-router)
+   1. [Type-based structure](#61-type-based-structure)
+   2. [Feature-based structure](#62-feature-based-structure)
+   3. [Current project structure and Express Router](#63-current-project-structure-and-express-router)
 7. [Middlewares](#7-middlewares)
 
 ## 1. HTTP (recap)
 
 - As we learned in the previous labs, HTTP is a client-server protocol that operates through a message exchange process initiated by the client (a **request**), to which the host (also known as the **server**) responds (a **response**)
 
-    ![Client-server architecture](https://res.cloudinary.com/lwgatsby/f_auto/www/uploads/2023/05/client-server-network.jpg)
+  ![Client-server architecture](https://res.cloudinary.com/lwgatsby/f_auto/www/uploads/2023/05/client-server-network.jpg)
 
 - Every resource available on the web is stored on a server and can be accessed by any client through a URL (Uniform Resource Locator) which has the following structure:
+
 ```
 [protocol]://[domain]/[path/to/resource?parameter1=value1&parameter2=value2]
 
@@ -49,7 +50,7 @@ https://wikipedia.org/wiki/World_Wide_Web
 
 - Throughout the following labs, we'll learn the basic concepts of web programming by implementing an application for managing personal movie collections
 
-- We'll start by defining and implementing the server (*the back-end part*) and will later create a user interface (*the front-end part*) that we'll connect to the server
+- We'll start by defining and implementing the server (_the back-end part_) and will later create a user interface (_the front-end part_) that we'll connect to the server
 
 - We'll use JavaScript to implement both parts
 
@@ -63,80 +64,88 @@ https://wikipedia.org/wiki/World_Wide_Web
 const http = require("http");
 
 // for now, we'll simulate connecting to a real database by using locally defined data
-const movies = ["Synechdoche, New York", "i'm thinking of ending things", "mother!", "Aloners", "Blue Valentine", "aftersun"];
+const movies = [
+  "Synechdoche, New York",
+  "i'm thinking of ending things",
+  "mother!",
+  "Aloners",
+  "Blue Valentine",
+  "aftersun",
+];
 
 http
   .createServer((req, res) => {
-    res.write(JSON.stringify({records: movies}));
+    res.write(JSON.stringify({ records: movies }));
     res.end();
-  }).listen(8080);
+  })
+  .listen(8080);
 ```
 
 - We can access the main route, the only one for now, by navigating in a browser to http://localhost:8080 or using Postman to send a GET request
 
 - Although simple to read and understand for the moment, the code we wrote defines both the data persistence layer and the request handling layer in the same file
 
-- In a complex application, this would make the code very hard to read and write, which is why each functionality should be defined in a *module* that can be imported into other files
+- In a complex application, this would make the code very hard to read and write, which is why each functionality should be defined in a _module_ that can be imported into other files
 
 ## 3. Modules
 
 - A module represents a way to organize code by splitting it into multiple structures with reduced complexity that are independent and reusable
 
 - In JavaScript, there are 2 standardized ways to define modules:
-  - CommonJS - default in Node.js, uses the *module.exports* and *require* instructions
-  
+  - CommonJS - default in Node.js, uses the _module.exports_ and _require_ instructions
+
   ```javascript
   // mymodule.js
   const myFunction = () => {
-  // ...
+    // ...
   };
 
   module.exports = {
-    myFunction
+    myFunction,
   };
 
   // main.js
-  const myModule = require('./mymodule');
+  const myModule = require("./mymodule");
   myModule.myFunction();
   ```
 
-  - ECMAScript modules (ESModules) - the de facto language standard, default on the front-end, uses the *export* and *import* instructions
+  - ECMAScript modules (ESModules) - the de facto language standard, default on the front-end, uses the _export_ and _import_ instructions
 
   ```javascript
   // mymodule.js
   const myFunction = () => {
-  // ...
+    // ...
   };
 
   export { myFunction };
 
   // main.js
-  import { myFunction } from './mymodule';
+  import { myFunction } from "./mymodule";
   myFunction();
   ```
 
-- In our case, we'll create a new file called *movie.js* where we'll define and export the *movies* variable, then import it in the main file
+- In our case, we'll create a new file called _movie.js_ where we'll define and export the _movies_ variable, then import it in the main file
   - For starters, we'll use CommonJS modules on the back-end, and we'll update the implementation later to use ESModules
 
-- These types of modules are called *local modules* because they allow us to export and import code defined in different files in a direct and quick way
+- These types of modules are called _local modules_ because they allow us to export and import code defined in different files in a direct and quick way
 
-- A collection of modules that work together and define a series of functionalities is called a *package*
+- A collection of modules that work together and define a series of functionalities is called a _package_
 
-- Very importantly, based on this mechanism, we can install and use *remote modules*, grouped in packages, which help us to import external code in our application to implement various functionalities
+- Very importantly, based on this mechanism, we can install and use _remote modules_, grouped in packages, which help us to import external code in our application to implement various functionalities
 
 - The official package management system in Node.js is called Node Package Manager, or npm for short
 
 ## 4. Node Package Manager (npm)
 
-- npm is one of the largest and most popular open-source package ecosystems, containing over *3 million* packages used by over *17 million* developers
+- npm is one of the largest and most popular open-source package ecosystems, containing over _3 million_ packages used by over _17 million_ developers
 
 - Due to its important role in the ecosystem, npm is installed together with node.js by default
 
-- To import external modules in our application, we'll initialize a package using the *npm init* command and fill in the required information
+- To import external modules in our application, we'll initialize a package using the _npm init_ command and fill in the required information
 
 ### 4.1 The package.json file
 
-- After completing the previous step, we notice the creation of the *package.json* file in the current directory
+- After completing the previous step, we notice the creation of the _package.json_ file in the current directory
 
 - This file is the main configuration file for packages, containing information about:
 - the project's name and description
@@ -159,7 +168,7 @@ http
       // scripts can be defined in this file and used later in the terminal
       // in this example, we'll be able to use the npm start command which will actually execute the node main.js command
       // generally, using scripts is recommended because they can define more complex behaviors that can be executed using a single command
-      "start": "node main.js",
+      "start": "node main.js"
     },
     "author": "John Doe",
     "license": "MIT",
@@ -180,11 +189,11 @@ http
 - **npm install**
   - used to install a package
   - followed by the package name, for example:
-  
+
   ```bash
   npm install lodash
   ```
-  
+
   - can receive the "-g" option to install globally, at system level
   - can receive the "-D" option to install a package that will only be used in development
   - can receive the "--save" option to save a dependency in the project's package.json file
@@ -211,7 +220,7 @@ http
 
 ### 4.3 Using external packages
 
-- To see external package usage in practice, we'll install the *random* package
+- To see external package usage in practice, we'll install the _random_ package
 
 ```bash
 npm install --save random
@@ -223,27 +232,28 @@ npm install --save random
 const http = require("http");
 const random = require("random");
 
-const { movies } = require('./movies');
+const { movies } = require("./movies");
 
 http
-    .createServer((req, res) => {
-        if(req.url === "/random") {
-            const rnd = random.int(0, movies.length - 1);
-            res.write(JSON.stringify({movie: movies[rnd]}));
-        } else {
-            res.write(JSON.stringify({records: movies}));
-        }
-        res.end();
-    }).listen(8080);
+  .createServer((req, res) => {
+    if (req.url === "/random") {
+      const rnd = random.int(0, movies.length - 1);
+      res.write(JSON.stringify({ movie: movies[rnd] }));
+    } else {
+      res.write(JSON.stringify({ records: movies }));
+    }
+    res.end();
+  })
+  .listen(8080);
 ```
 
-- If we try to run the server now, we'll get an error: *Error [ERR_REQUIRE_ESM]*
+- If we try to run the server now, we'll get an error: _Error [ERR_REQUIRE_ESM]_
   - This indicates that this package can no longer be imported using the classic syntax, CommonJS
   - In practice, CommonJS is not deprecated, but in the near future, more and more projects will migrate to ESModules, because it's the standard supported by the language (along with a few other advantages related to performance)
 
 - To change the module type from CommonJS to ESModules, we need to:
-  - Add the "type": "module" property in *package.json*
-  - Rewrite the previous implementation using *import*/*export* syntax
+  - Add the "type": "module" property in _package.json_
+  - Rewrite the previous implementation using _import_/_export_ syntax
 
 ```javascript
 // main.js
@@ -253,28 +263,36 @@ import random from "random";
 import { movies } from "./movie.js";
 
 http
-    .createServer((req, res) => {
-        if(req.url === "/random") {
-            const rnd = random.int(0, movies.length - 1);
-            res.write(JSON.stringify({movie: movies[rnd]}));
-        } else {
-            res.write(JSON.stringify({records: movies}));
-        }
+  .createServer((req, res) => {
+    if (req.url === "/random") {
+      const rnd = random.int(0, movies.length - 1);
+      res.write(JSON.stringify({ movie: movies[rnd] }));
+    } else {
+      res.write(JSON.stringify({ records: movies }));
+    }
 
-        res.end();
-    }).listen(8080);
+    res.end();
+  })
+  .listen(8080);
 ```
 
 ```javascript
 //movie.js
-export const movies = ["Synechdoche, New York", "i'm thinking of ending things", "mother!", "Aloners", "Blue Valentine", "aftersun"];
+export const movies = [
+  "Synechdoche, New York",
+  "i'm thinking of ending things",
+  "mother!",
+  "Aloners",
+  "Blue Valentine",
+  "aftersun",
+];
 ```
 
 ## 5. Express
 
 - Node.js is a complex and powerful environment, but we notice that, although simple at first glance, it wasn't explicitly created for managing multiple routes (also called endpoints), something very common in web servers
 
-- In practice, code modularity is a very important characteristic, which is why, to help developers write code in a more organized way, multiple frameworks have emerged that can be used *on top*, extending the runtime's functionalities
+- In practice, code modularity is a very important characteristic, which is why, to help developers write code in a more organized way, multiple frameworks have emerged that can be used _on top_, extending the runtime's functionalities
 
 - The most popular framework for writing web servers in Node.js is [Express](https://www.npmjs.com/package/express)
 
@@ -287,7 +305,7 @@ npm install --save express
 - Using Express, we can rewrite the previous implementation, having at our disposal much more powerful methods for defining endpoints and their actual implementation
 
 ```javascript
-import express from 'express';
+import express from "express";
 import random from "random";
 import { movies } from "./movie.js";
 
@@ -297,18 +315,20 @@ const app = express();
 
 // the HTTP method for which this handler will be attached
 app.get("/", (req, res) => {
-    // req contains details about the request
-    // res contains details about the response
-    res.send({ records: movies });
+  // req contains details about the request
+  // res contains details about the response
+  res.send({ records: movies });
 });
 
 // compared to the previous method, in express the order of the endpoints doesn't matter
 app.get("/random", (req, res) => {
-    const rnd = random.int(0, movies.length - 1);
-    res.send({ movie: movies[rnd] });
+  const rnd = random.int(0, movies.length - 1);
+  res.send({ movie: movies[rnd] });
 });
 
-app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server started on http://localhost:${PORT}`),
+);
 ```
 
 - Depending on the method, a request can contain several types of data that are processed by the server to generate a correct response
@@ -320,25 +340,27 @@ app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`)
   - Body parameters (body params)
 
 - For GET requests, which aim to obtain information from the server, we can use query and path parameters:
-  - Query parameters are defined at the end of the URL, using the specific markup *?parameterName=value*
-  - Path parameters are part of the URL and uniquely identify the requested resource *movie/1*
+  - Query parameters are defined at the end of the URL, using the specific markup _?parameterName=value_
+  - Path parameters are part of the URL and uniquely identify the requested resource _movie/1_
 
 - Query parameters are used when we inform the server about some variables it needs to take into account when performing the invoked action
 
 ```javascript
 // will respond to a request like http://localhost:8080/search?title=moth
 app.get("/search", (req, res) => {
-    // accessing query parameters
-    const requestedTitle = req.query.title;
-    const identifiedMovie = movies.find(movie => movie.includes(requestedTitle));
+  // accessing query parameters
+  const requestedTitle = req.query.title;
+  const identifiedMovie = movies.find((movie) =>
+    movie.includes(requestedTitle),
+  );
 
-    if (!!identifiedMovie) {
-        res.send({ movie: identifiedMovie });
-    } else {
-        // remember that each response has an attached status that informs the client about
-        // the status of the response
-        res.status(404).send({ message: "Movie not found" });
-    }
+  if (!!identifiedMovie) {
+    res.send({ movie: identifiedMovie });
+  } else {
+    // remember that each response has an attached status that informs the client about
+    // the status of the response
+    res.status(404).send({ message: "Movie not found" });
+  }
 });
 ```
 
@@ -346,16 +368,16 @@ app.get("/search", (req, res) => {
 
 ```javascript
 app.get("/:id", (req, res) => {
-    // accessing path parameters
-    const id = req.params.id;
-    // we'll consider the id as the element's index in the movies array
-    const identifiedMovie = movies[id];
+  // accessing path parameters
+  const id = req.params.id;
+  // we'll consider the id as the element's index in the movies array
+  const identifiedMovie = movies[id];
 
-    if(!!identifiedMovie) {
-        res.send({movie: identifiedMovie});
-    } else {
-        res.status(404).send({ message: "Movie not found" });
-    }
+  if (!!identifiedMovie) {
+    res.send({ movie: identifiedMovie });
+  } else {
+    res.status(404).send({ message: "Movie not found" });
+  }
 });
 ```
 
@@ -366,7 +388,7 @@ app.get("/:id", (req, res) => {
 - Like most web applications, the body we'll send to the server will be structured as JSON, which is why we need to add, right after defining the app variable, the instruction
 
 ```javascript
-app.use(express.json())
+app.use(express.json());
 ```
 
 - Afterwards, we'll be able to implement an endpoint that enables us to add a new movie to the existing movie list
@@ -374,17 +396,17 @@ app.use(express.json())
 ```javascript
 // notice the use of the post method to handle a POST request
 app.post("/", (req, res) => {
-    // accessing body parameters
-    // what do you think will happen if we delete the line added in the previous step?
-    // will we still be able to access the title parameter?
-    const newMovie = req.body.title;
+  // accessing body parameters
+  // what do you think will happen if we delete the line added in the previous step?
+  // will we still be able to access the title parameter?
+  const newMovie = req.body.title;
 
-    // if the movie doesn't already exist, we add it
-    if(!movies.includes(newMovie)) {
-        movies.push(newMovie);
-    }
+  // if the movie doesn't already exist, we add it
+  if (!movies.includes(newMovie)) {
+    movies.push(newMovie);
+  }
 
-    res.status(201).send({result: "Movie was created"});
+  res.status(201).send({ result: "Movie was created" });
 });
 ```
 
@@ -395,7 +417,7 @@ app.post("/", (req, res) => {
 
 - Although Express helps us define routes in a more organized way, by default, we'll end up implementing the entire application in a single file, which is not recommended, considering that it will become very hard to read as the application grows
 
-- For organizing back-end projects, there are 2 main structure options: *type-based structure* and *feature-based structure*
+- For organizing back-end projects, there are 2 main structure options: _type-based structure_ and _feature-based structure_
 
 ## 6. Project structure
 
@@ -448,6 +470,7 @@ app.post("/", (req, res) => {
 ### 6.3 Current project structure and Express Router
 
 - In this lab, we'll organize the project **by type**, rewriting the current application to follow the structure shown earlier
+
 ```
     app/
     ├── controllers/
@@ -462,11 +485,11 @@ app.post("/", (req, res) => {
     └── package.json
 ```
 
-- To be able to separate routes from controllers and import them later in the main file, we'll use *Express Router* and we'll split the main.js file into 3 distinct files:
+- To be able to separate routes from controllers and import them later in the main file, we'll use _Express Router_ and we'll split the main.js file into 3 distinct files:
   - routes/movie.js
 
   ```javascript
-  import express from 'express';
+  import express from "express";
   import * as movieController from "../controllers/movie.js";
 
   export const router = express.Router();
@@ -512,9 +535,9 @@ app.post("/", (req, res) => {
     const identifiedMovie = movieService.getById(req.params.id);
 
     if (!!identifiedMovie) {
-        res.send({ movie: identifiedMovie });
+      res.send({ movie: identifiedMovie });
     } else {
-        res.status(404).send({ message: "Movie not found" });
+      res.status(404).send({ message: "Movie not found" });
     }
   };
 
@@ -525,13 +548,7 @@ app.post("/", (req, res) => {
 
   // other methods
 
-  export {
-    getMovies,
-    getRandomMovie,
-    search,
-    getById,
-    create
-  }
+  export { getMovies, getRandomMovie, search, getById, create };
   ```
 
   - services/movie.js
@@ -541,44 +558,38 @@ app.post("/", (req, res) => {
   import { movies } from "../models/movie.js";
 
   const getMovies = () => {
-      return movies;
+    return movies;
   };
 
   const getRandomMovie = () => {
-      const rnd = random.int(0, movies.length - 1);
-      return movies[rnd];
+    const rnd = random.int(0, movies.length - 1);
+    return movies[rnd];
   };
 
   const search = (title) => {
-      return movies.find(movie => movie.includes(title));
+    return movies.find((movie) => movie.includes(title));
   };
 
   const getById = (id) => {
-      return movies[id];
+    return movies[id];
   };
 
   const create = (title) => {
-      if (!movies.includes(title)) {
-          movies.push(title);
-      }
+    if (!movies.includes(title)) {
+      movies.push(title);
+    }
   };
 
   // other methods
 
-  export {
-      getMovies,
-      getRandomMovie,
-      search,
-      getById,
-      create
-  }  
+  export { getMovies, getRandomMovie, search, getById, create };
   ```
 
   - main.js
 
   ```javascript
-  import express from 'express';
-  import {router as movieRouter} from './routes/movie.js';
+  import express from "express";
+  import { router as movieRouter } from "./routes/movie.js";
 
   const PORT = 8080;
 
@@ -588,10 +599,12 @@ app.post("/", (req, res) => {
   // attaching routes handling movies
   app.use("/movie", movieRouter);
 
-  app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
+  app.listen(PORT, () =>
+    console.log(`Server started on http://localhost:${PORT}`),
+  );
   ```
 
-- Thus, we obtain a better organized project which, as new functionalities and entities are introduced, will expand *horizontally* (more files), as opposed to the previous example when it would have expanded *vertically* (a very long file)
+- Thus, we obtain a better organized project which, as new functionalities and entities are introduced, will expand _horizontally_ (more files), as opposed to the previous example when it would have expanded _vertically_ (a very long file)
 
 ## 7. Middlewares
 
@@ -602,16 +615,16 @@ app.post("/", (req, res) => {
   - authentication
   - error handling
 
-- Being a different type of component, we'll create a file that describes the middleware's functionality in a new directory called *middlewares*
+- Being a different type of component, we'll create a file that describes the middleware's functionality in a new directory called _middlewares_
 
 - Using a middleware, we can implement, for example, a method that logs the time and path on which a request was registered:
 
 ```javascript
 // middlewares/logging.js
-export const logRequestDetails = ((req, res, next) => {
-    console.log(`${new Date()}: ${req.path}`);
-    next();
-});
+export const logRequestDetails = (req, res, next) => {
+  console.log(`${new Date()}: ${req.path}`);
+  next();
+};
 ```
 
 - To apply this middleware globally, for every request, we'll import and use it in main.js
@@ -622,7 +635,7 @@ import { logRequestDetails } from './middlewares/logging.js';
 app.use(logRequestDetails);
 ```
 
-- If we want to use it only in a specific group of endpoints, such as movies, we can import and use it at the *routes/movie.js* file level
+- If we want to use it only in a specific group of endpoints, such as movies, we can import and use it at the _routes/movie.js_ file level
 
 ```javascript
 import { logRequestDetails } from '../middlewares/logging.js';

@@ -13,11 +13,12 @@
 - [Lab 5 - Asynchronous Programming: callback, Promise, async/await](/labs/l5/README.md)
 - [Lab 6 - HTTP Server: Node.js & Express](./labs/l6/README.md)
 - [Lab 7 - REST, databases & ORMs](./labs/l7/README.md)
+- [Lab 8 - Relationships between entities & back-end recap](./labs/l8/README.md)
 
 ## Homework
 
 - <del>[First homework - JavaScript](https://classroom.github.com/a/_x_p8U3b) - deadline: 27th of October 2025, 23:59</del>
-- [Second homework - Advanced JavaScript](https://classroom.github.com/a/qAAnoLTx) - deadline: 17th of November 2025, 23:59
+- <del>[Second homework - Advanced JavaScript](https://classroom.github.com/a/qAAnoLTx) - deadline: 17th of November 2025, 23:59</del>
 
 ## Project
 
