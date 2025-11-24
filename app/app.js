@@ -1,5 +1,6 @@
-import express from 'express';
-import { router as moviesRouter } from './routes/movies.js';
+import express from "express";
+import { router as moviesRouter } from "./routes/movies.js";
+import { synchronizeDatabase } from "./models/config.js";
 
 const PORT = 8080;
 
@@ -11,4 +12,13 @@ router.use("/movies", moviesRouter);
 
 app.use("/api/v1", router);
 
-app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));
+const server = app.listen(PORT, async () => {
+  try {
+    await synchronizeDatabase();
+  } catch (ex) {
+    console.log("The connection to database did not work");
+    server.close();
+  }
+
+  console.log(`Server started on http://localhost:${PORT}`);
+});

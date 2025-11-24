@@ -27,6 +27,7 @@
 ## Lab app versions
 
 - [After Lab 6 - HTTP Server: Node.js & Express](https://github.com/axbg/webtech/releases/tag/app-after-lab-6)
+- [After Lab 7 - HTTP Server: Adding an ORM](https://github.com/axbg/webtech/releases/tag/app-after-lab-7)
 
 ## Feedback
 
