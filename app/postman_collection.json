@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "bbf227a1-c8da-4f84-bc16-0da4d6708800",
+		"name": "action! API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3503324"
+	},
+	"item": [
+		{
+			"name": "getMovie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/movies",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Spider-Man-2\",\n    \"director\": \"Johny\",\n    \"year\": 1991,\n    \"test\": 21,\n    \"id\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/movies",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMovie",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Spider-Man-5\",\n    \"id\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/movies",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMovie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/movies/5",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"movies",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCollections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/collections?name=my",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"collections"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "my"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCollection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"myCollection2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/collections",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"collections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCollectionEntry",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movieId\": 1,\n    \"collectionId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}{{ROOT_URL}}/collectionEntries",
+					"host": [
+						"{{BASE_URL}}{{ROOT_URL}}"
+					],
+					"path": [
+						"collectionEntries"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ROOT_URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

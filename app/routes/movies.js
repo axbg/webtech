@@ -5,9 +5,8 @@ export const router = express.Router();
 
 router.get("/", moviesController.getMovies);
 
-router.post("/", moviesController.create);
+router.post("/", moviesController.createMovie);
 
-router.patch("/", moviesController.update);
+router.patch("/", moviesController.updateMovie);
 
 router.delete("/:id", moviesController.deleteMovie);
-

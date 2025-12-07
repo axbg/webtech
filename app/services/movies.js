@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-import { Movie } from "../models/movies.js";
+import { Movie } from "../models/config.js";
 
 const getMovies = async (filters) => {
   const entityKeys = Object.keys(Movie.getAttributes());
@@ -7,12 +7,9 @@ const getMovies = async (filters) => {
   delete filters.id;
   delete filters.poster;
 
-  // we define a dynamic selection condition based on the fields received as parameters
-  // but before doing that we are filtering out invalid fields
   const whereCondition = Object.keys(filters)
     .filter((key) => entityKeys.includes(key))
     .map((key) => {
-      // apply "like" clause on title and director instead of equal
       if (key === "title" || key === "director") {
         return { [key]: { [Op.like]: `%${filters[key]}%` } };
       }
