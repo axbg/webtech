@@ -14,6 +14,7 @@
 - [Lab 6 - HTTP Server: Node.js & Express](./labs/l6/README.md)
 - [Lab 7 - REST, databases & ORMs](./labs/l7/README.md)
 - [Lab 8 - Relationships between entities & back-end recap](./labs/l8/README.md)
+- [Lab 9 - HTTP Client: HTML, CSS & JavaScript](./labs/l9/README.md)
 
 ## Homework
 
