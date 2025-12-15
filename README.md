@@ -34,6 +34,7 @@
 - [After Lab 7 - HTTP Server: Adding an ORM](https://github.com/axbg/webtech/releases/tag/app-after-lab-7)
 - [After Lab 8 - HTTP Server: Relationship between entities](https://github.com/axbg/webtech/releases/tag/app-after-lab-8)
 - [After Lab 9 - HTTP Client: Adding a simple UI](https://github.com/axbg/webtech/releases/tag/app-after-lab-9)
+- [After Lab 10 - HTTP Client: Defining a layout](https://github.com/axbg/webtech/releases/tag/app-after-lab-10)
 
 ## Feedback
 
