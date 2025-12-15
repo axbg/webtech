@@ -1,11 +1,13 @@
 import express from "express";
 import { router } from "./routes/config.js";
 import { synchronizeDatabase } from "./models/config.js";
+import cors from "cors";
 
 const PORT = 8080;
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/v1", router);
 

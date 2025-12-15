@@ -1,0 +1,47 @@
+.container {
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  padding: 10px;
+}
+
+.list-container,
+.create-container {
+  border: 5px solid black;
+  margin: 5px;
+  padding: 15px;
+}
+
+.movie-container {
+  border: 1px solid black;
+  padding: 10px;
+  width: 20%;
+  margin: 10px auto;
+  cursor: pointer;
+  background-color: whitesmoke;
+}
+
+.movie-poster {
+  max-height: 100px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#movieForm {
+  width: 30%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#movieForm input,
+#movieForm textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#movieForm button {
+  width: 100%;
+}

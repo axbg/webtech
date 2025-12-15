@@ -32,6 +32,7 @@
 - [After Lab 6 - HTTP Server: Node.js & Express](https://github.com/axbg/webtech/releases/tag/app-after-lab-6)
 - [After Lab 7 - HTTP Server: Adding an ORM](https://github.com/axbg/webtech/releases/tag/app-after-lab-7)
 - [After Lab 8 - HTTP Server: Relationship between entities](https://github.com/axbg/webtech/releases/tag/app-after-lab-8)
+- [After Lab 9 - HTTP Client: Adding a simple UI](https://github.com/axbg/webtech/releases/tag/app-after-lab-9)
 
 ## Feedback
 

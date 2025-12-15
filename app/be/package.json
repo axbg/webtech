@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "random": "^5.1.1",
     "sequelize": "^6.37.5",
