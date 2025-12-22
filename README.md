@@ -17,6 +17,7 @@
 - [Lab 9 - HTTP Client: HTML, CSS & JavaScript](./labs/l9/README.md)
 - [Lab 10 - CSS: UI on the Web](./labs/l10/README.md)
 - [Lab 11 - React](./labs/l11/README.md)
+- [Lab 12 - React Router & Redux](./labs/l12/README.md)
 
 ## Homework
 
