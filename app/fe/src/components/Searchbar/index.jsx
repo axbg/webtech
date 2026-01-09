@@ -1,33 +1,33 @@
-import { useState } from "react";
+import { useNavigate } from 'react-router';
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useState } from 'react';
 
 import "./style.css";
+import { setSearchTitle } from "../../actions/movies";
 
 const Searchbar = ({ openModal, getMovies }) => {
-  const [queryTitle, setQueryTitle] = useState(null);
+  const queryTitle = useSelector((state) => state.movies.searchTitle);
+  const dispatch = useDispatch();
 
-  const onChangeQueryTitle = (event) => {
-    const searchedMovieTitle = event.target.value;
-    setQueryTitle(searchedMovieTitle);
-  };
+  const [temporaryQueryTitle, setTemporaryQueryTitle] = useState(queryTitle);
+
+  const navigate = useNavigate();
+
+  const searchMovie = (queryTitle) => {
+    dispatch(setSearchTitle(queryTitle));
+    getMovies(queryTitle);
+  }
 
   return (
     <div className="toolbar">
-      <input
-        onChange={onChangeQueryTitle}
-        id="search"
-        className="searchbar custom-text-input"
-        type="text"
-        placeholder="Search for a movie"
-      />
-      <button className="custom-button" onClick={() => getMovies(queryTitle)}>
-        Search
-      </button>
-      <button className="custom-button" onClick={() => openModal()}>
-        Add a movie
-      </button>
+      <input value={temporaryQueryTitle} onChange={(e) => setTemporaryQueryTitle(e.target.value)} id="search" className="searchbar custom-text-input" type="text"
+        placeholder="Search for a movie" />
+      <button className="custom-button" onClick={() => searchMovie(temporaryQueryTitle)}>Search</button>
+      <button className="custom-button" onClick={() => openModal()}>Add a movie</button>
+      <button className="custom-button" onClick={() => navigate("/series")}>Series Page</button>
     </div>
   );
 };
 
 export { Searchbar };
-

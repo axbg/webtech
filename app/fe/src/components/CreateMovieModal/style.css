@@ -1,37 +1,36 @@
 .modal {
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0px;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: block;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
 }
 
 .modal-content {
-  background-color: #fff;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #000;
-  border-radius: 20px;
-  width: 50%;
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    width: 50%;
 }
 
 .modal-header {
-  display: flex;
+    display: flex;
 }
 
 .modal-header h2 {
-  flex: 1;
+    flex: 1;
 }
 
 .modal-close {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .create-form {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
 }
-

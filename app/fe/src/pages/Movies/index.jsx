@@ -1,16 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { addMovie as addMovieAction, setMovies as setMoviesAction, deleteMovie as deleteMovieAction } from '../../actions/movies';
 
-import { MovieCard } from "../../components/MovieCard/index.jsx";
+import { MovieCard } from '../../components/MovieCard';
 
-import "./style.css";
-import { CreateMovieModal } from "../../components/CreateMovieModal/index.jsx";
-import { Searchbar } from "../../components/Searchbar/index.jsx";
+import './style.css';
+import { CreateMovieModal } from '../../components/CreateMovieModal';
+import { Searchbar } from '../../components/Searchbar';
 
 const SERVER_URL = "http://localhost:8080/api/v1";
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  const movies = useSelector((state) => state.movies.data);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const getMovies = (queryTitle) => {
     const queryParams = new URLSearchParams();
@@ -20,41 +25,40 @@ const Movies = () => {
     }
 
     fetch(`${SERVER_URL}/movies?` + queryParams)
-      .then((res) => res.json())
-      .then((data) => setMovies(data.records));
+      .then(res => res.json())
+      .then(data => dispatch(setMoviesAction(data.records)));
   };
 
   const addMovie = (movie) => {
     fetch(`${SERVER_URL}/movies`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(movie),
+      body: JSON.stringify(movie)
     })
-      .then((res) => getMovies())
-      .catch((err) => console.log(err));
-  };
+      .then(res => res.json())
+      .then(data => {
+        dispatch(addMovieAction(data.movie));
+        getMovies();
+      })
+      .catch(err => console.log(err));
+  }
 
   const deleteMovie = (movie) => {
-    if (confirm("Do you really want to delete this movie?")) {
-      fetch(`${SERVER_URL}/movies/${movie.id}`, { method: "DELETE" })
-        .then((res) => getMovies())
-        .catch((err) => console.log(err));
-    }
-  };
-
-  useEffect(() => {
-    getMovies();
-  }, []);
+    fetch(`${SERVER_URL}/movies/${movie.id}`, { method: "DELETE" })
+      .then(res => getMovies())
+      .then(() => dispatch(deleteMovieAction(movie.id)))
+      .catch(err => console.log(err));
+  }
 
   const openModal = () => {
     setIsModalOpen(true);
-  };
+  }
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
+  }
 
   return (
     <div>
@@ -67,12 +71,9 @@ const Movies = () => {
           ))}
         </div>
       </div>
-      {isModalOpen && (
-        <CreateMovieModal onAddMovie={addMovie} closeModal={closeModal} />
-      )}
+      {isModalOpen && <CreateMovieModal onAddMovie={addMovie} closeModal={closeModal} />}
     </div>
-  );
+  )
 };
 
 export { Movies };
-
