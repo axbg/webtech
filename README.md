@@ -18,6 +18,7 @@
 - [Lab 10 - CSS: UI on the Web](./labs/l10/README.md)
 - [Lab 11 - React](./labs/l11/README.md)
 - [Lab 12 - React Router & Redux](./labs/l12/README.md)
+- [Lab 13 - React: UI libraries](./labs/l13/README.md)
 
 ## Homework
 
