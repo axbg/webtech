@@ -41,6 +41,7 @@
 - [After Lab 10 - HTTP Client: Defining a layout](https://github.com/axbg/webtech/releases/tag/app-after-lab-10)
 - [After Lab 11 - HTTP Client: Refactoring to React](https://github.com/axbg/webtech/releases/tag/app-after-lab-11)
 - [After Lab 12 - HTTP Client: Adding Redux](https://github.com/axbg/webtech/releases/tag/app-after-lab-12)
+- [After Lab 13 - HTTP Client: Refactoring to Material UI](https://github.com/axbg/webtech/releases/tag/app-after-lab-13)
 
 ## Feedback
 

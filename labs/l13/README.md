@@ -86,46 +86,60 @@
         {/* using the Card and CardContent component to display content in a structured form */}
         <CardContent>
           {/* using the grid component to arrange and space elements */}
-          <Grid container spacing={2} columns={12}>
-            <Grid item xs={2}>
+          <Grid container columns={12} wrap="nowrap">
+            <Grid item size={4} textAlign="center">
               <img
                 alt="movie-img"
-                style={{ maxWidth: "100%", height: "auto" }}
+                style={{ height: "auto", width: "80%" }}
                 src={movie.poster}
               />
             </Grid>
-            <Grid item xs={10}>
-              <Grid container columns={12}>
-                <Grid item xs={5}>
+            <Grid item size={8} padding="20px">
+              <Box
+                height="100%"
+                display="flex"
+                flexDirection="column"
+                flexWrap="nowrap"
+                gap={2}
+              >
+                <Box display="flex" flexWrap="wrap">
                   {/* using the Typography component for text styling */}
                   <Typography variant="h6">
                     {`${movie.title} (${movie.year})`}
                   </Typography>
-                </Grid>
-                <Grid item xs={7} textAlign="right">
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={() => confirmDelete(movie)}
-                  >
-                    X
-                  </Button>
-                </Grid>
-              </Grid>
-              <Box mt={2} mb={2}>
-                {/* sx - property for custom styling */}
-                <Typography sx={{ fontStyle: "italic" }}>
+                  <Box marginLeft="auto" display="flex" gap="5px">
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      onClick={() => setIsEditable(true)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => confirmDelete(movie)}
+                    >
+                      X
+                    </Button>
+                  </Box>
+                </Box>
+                <Typography fontStyle="italic">
                   {`${movie.genre} • ${movie.duration} minutes • ${movie.director}`}
                 </Typography>
-              </Box>
-              {/* color selected from default theme https://mui.com/material-ui/customization/palette/ */}
-              <Box
-                backgroundColor="warning.main"
-                p={2}
-                sx={{ borderRadius: 5 }}
-                color="white"
-              >
-                {movie.synopsis}
+                {/* color selected from default theme https://mui.com/material-ui/customization/palette/ */}
+                <Box
+                  flexGrow={1}
+                  display="flex"
+                  flexDirection="column"
+                  borderRadius={5}
+                  justifyContent="center"
+                  backgroundColor="warning.main"
+                  p={2}
+                  color="white"
+                >
+                  {movie.synopsis}
+                </Box>
               </Box>
             </Grid>
           </Grid>
@@ -216,6 +230,7 @@
           getActions: ({ id }) => {
             return [
               <GridActionsCellItem
+                key={id}
                 icon={<DeleteIcon />}
                 label="Delete"
                 onClick={() => {
@@ -264,7 +279,7 @@
 
     const MovieList = ({ movies, updateMovie, deleteMovie }) => {
       return (
-        <div id="moviesContainer">
+        <div>
           {movies.map((movie, index) => (
             <MovieCard
               movie={movie}
@@ -527,7 +542,7 @@
             <CardContent>
               {/* defining a form that will call the updateMovie method when the submit button is pressed */}
               <form onSubmit={updateMovie}>
-                <Grid container columnSpacing={1} direction="column">
+                <Box display="flex" gap={1} flexDirection="column">
                   <TextField
                     label="Title"
                     value={movieDetails.title}
@@ -601,72 +616,76 @@
                     name="poster"
                   />
                   <br />
-                </Grid>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="warning"
-                  sx={{ marginRight: 1 }}
-                >
-                  Save
-                </Button>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={cancelUpdate}
-                >
-                  Abort changes
-                </Button>
+                </Box>
+                <Box display="flex" gap={1} mt={2} justifyContent="flex-end">
+                  <Button type="submit" variant="contained" color="warning">
+                    Save
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={cancelUpdate}
+                  >
+                    Abort changes
+                  </Button>
+                </Box>
               </form>
             </CardContent>
           ) : (
             <CardContent>
-              <Grid container spacing={2} columns={12}>
-                <Grid item xs={2}>
+              <Grid container columns={12} wrap="nowrap">
+                <Grid item size={4} textAlign="center">
                   <img
                     alt="movie-img"
-                    style={{ maxWidth: "100%", height: "auto" }}
+                    style={{ height: "auto", width: "80%" }}
                     src={movie.poster}
                   />
                 </Grid>
-                <Grid item xs={10}>
-                  <Grid container columns={12}>
-                    <Grid item xs={5}>
+                <Grid item size={8} padding="20px">
+                  <Box
+                    height="100%"
+                    display="flex"
+                    flexDirection="column"
+                    flexWrap="nowrap"
+                    gap={2}
+                  >
+                    <Box display="flex" flexWrap="wrap">
                       <Typography variant="h6">
                         {`${movie.title} (${movie.year})`}
                       </Typography>
-                    </Grid>
-                    <Grid item xs={7} textAlign="right">
-                      {/* button that will allow switching to edit mode */}
-                      <Button
-                        variant="contained"
-                        color="warning"
-                        onClick={() => setIsEditable(true)}
-                        sx={{ marginRight: 1 }}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => confirmDelete(movie)}
-                      >
-                        X
-                      </Button>
-                    </Grid>
-                  </Grid>
-                  <Box mt={2} mb={2}>
-                    <Typography sx={{ fontStyle: "italic" }}>
+                      <Box marginLeft="auto" display="flex" gap="5px">
+                        {/* button that switches view mode to edit mode */}
+                        <Button
+                          variant="contained"
+                          color="warning"
+                          onClick={() => setIsEditable(true)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={() => confirmDelete(movie)}
+                        >
+                          X
+                        </Button>
+                      </Box>
+                    </Box>
+                    <Typography fontStyle="italic">
                       {`${movie.genre} • ${movie.duration} minutes • ${movie.director}`}
                     </Typography>
-                  </Box>
-                  <Box
-                    backgroundColor="warning.main"
-                    p={2}
-                    sx={{ borderRadius: 5 }}
-                    color="white"
-                  >
-                    {movie.synopsis}
+                    <Box
+                      flexGrow={1}
+                      display="flex"
+                      flexDirection="column"
+                      borderRadius={5}
+                      justifyContent="center"
+                      backgroundColor="warning.main"
+                      p={2}
+                      color="white"
+                    >
+                      {movie.synopsis}
+                    </Box>
                   </Box>
                 </Grid>
               </Grid>
